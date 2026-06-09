@@ -2,7 +2,7 @@
 
 # ⚽ Football News API
 
-API متكامل لأخبار كرة القدم مبني بـ Laravel + Sanctum
+RESTful API لأخبار كرة القدم | Laravel 11 · Sanctum · MySQL
 
 ![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white)
