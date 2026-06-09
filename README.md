@@ -1,58 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# ⚽ Football News API
 
-## About Laravel
+API متكامل لأخبار كرة القدم مبني بـ Laravel + Sanctum
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Sanctum](https://img.shields.io/badge/Sanctum-Auth-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ✨ المميزات
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 📰 الأخبار
+- عرض وتصفية الأخبار حسب الفئة والفريق
+- بحث في الأخبار
+- أخبار عاجلة
+- نشر / إخفاء الأخبار
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🏆 الفرق واللاعبين
+- إدارة الفرق والدوريات
+- إدارة اللاعبين مع ربطهم بالفرق
+- أخبار كل فريق منفصلة
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 👤 المستخدمين
+- تسجيل وتسجيل دخول بـ Sanctum
+- حفظ الأخبار في المفضلة
+- التعليق على الأخبار
 
-## Agentic Development
+### 🛠️ لوحة الأدمن
+- إدارة كاملة للأخبار والفئات والفرق واللاعبين
+- Admin Middleware للحماية
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
+
+## 🔗 API Endpoints
+
+### Auth
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | تسجيل مستخدم جديد |
+| POST | `/api/auth/login` | تسجيل الدخول |
+| POST | `/api/auth/logout` | تسجيل الخروج |
+| GET  | `/api/auth/me` | بيانات المستخدم الحالي |
+
+### Public
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/news` | كل الأخبار |
+| GET | `/api/news/{slug}` | خبر واحد |
+| GET | `/api/news/breaking` | الأخبار العاجلة |
+| GET | `/api/categories` | كل الفئات |
+| GET | `/api/categories/{slug}/news` | أخبار فئة |
+| GET | `/api/teams` | كل الفرق |
+| GET | `/api/teams/{slug}` | فريق واحد |
+| GET | `/api/teams/{slug}/news` | أخبار فريق |
+| GET | `/api/players` | كل اللاعبين |
+| GET | `/api/players/{slug}` | لاعب واحد |
+
+### Authenticated
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/news/{news}/comments` | إضافة تعليق |
+| DELETE | `/api/comments/{comment}` | حذف تعليق |
+| POST | `/api/bookmarks/{news}` | حفظ / إلغاء حفظ خبر |
+| GET | `/api/bookmarks` | أخباري المحفوظة |
+
+### Admin
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET/POST | `/api/admin/news` | إدارة الأخبار |
+| PATCH | `/api/admin/news/{news}/toggle-breaking` | تبديل عاجل |
+| PATCH | `/api/admin/news/{news}/toggle-published` | تبديل النشر |
+| GET/POST | `/api/admin/categories` | إدارة الفئات |
+| GET/POST | `/api/admin/teams` | إدارة الفرق |
+| GET/POST | `/api/admin/players` | إدارة اللاعبين |
+
+---
+
+## 🛠️ التقنيات المستخدمة
+
+| الطبقة | التقنية |
+|--------|---------|
+| Backend | Laravel 11 |
+| Authentication | Laravel Sanctum |
+| Database | MySQL |
+| Storage | Laravel Storage |
+
+---
+
+## 🚀 طريقة التشغيل
+
+### المتطلبات
+- PHP >= 8.2
+- Composer
+- MySQL
+
+### الخطوات
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clone المشروع
+git clone https://github.com/MagdyMahmoud88/football-news-api.git
+cd football-news-api
 
-php artisan boost:install
+# 2. تثبيت الـ dependencies
+composer install
+
+# 3. إعداد ملف البيئة
+cp .env.example .env
+php artisan key:generate
+
+# 4. إعداد قاعدة البيانات في .env
+# DB_DATABASE=football_news
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+# 5. تشغيل الـ migrations والـ seeders
+php artisan migrate --seed
+
+# 6. Storage link
+php artisan storage:link
+
+# 7. تشغيل السيرفر
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 🧪 تست الـ API
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+استورد ملف `postman_collection.json` في Postman وستجد كل الـ endpoints جاهزة للاختبار.
 
-## Code of Conduct
+**بيانات الأدمن:**
+```
+Email: admin@football.com
+Password: password
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 👨‍💻 المطور
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Magdy Mahmoud**
+- GitHub: [@MagdyMahmoud88](https://github.com/MagdyMahmoud88)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<div align="center">
+صُنع بـ ❤️ باستخدام Laravel
+</div>
